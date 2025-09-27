@@ -243,6 +243,6 @@ Para consultas técnicas específicas, enviar email a: [ktouma@deacero.com]
 
 ---
 
-**Desarrollado por**: [Tu Nombre]  
-**Fecha**: Enero 2025  
+**Desarrollado por**: Armando Rodriguez Rocha
+**Fecha**: Septiembre 2025  
 **Versión**: 1.0.0
