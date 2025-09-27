@@ -1,0 +1,41 @@
+{
+  "model_info": {
+    "type": "Random Forest Regressor",
+    "n_estimators": 200,
+    "max_depth": 15,
+    "confidence": 0.95,
+    "training_date": "2025-09-27T11:46:00.289770"
+  },
+  "feature_count": 136,
+  "top_features": {
+    "indexmundi_rebar_price": 0.0931117994263928,
+    "indexmundi_rebar_price_mxn": 0.09295127273111001,
+    "steel_price_vs_historical": 0.07150643486037773,
+    "barchart_rebar_futures": 0.05328927727378638,
+    "daily_metal_rebar_price_ma_30": 0.03756628585497995,
+    "indexmundi_rebar_price_ma_30": 0.03362903370852591,
+    "daily_metal_rebar_price_ma_14": 0.033413800373189986,
+    "daily_metal_rebar_price_ma_7": 0.0325535027120525,
+    "indexmundi_rebar_price_ma_14": 0.031529509224067255,
+    "indexmundi_rebar_price_ma_7": 0.029167915930032914,
+    "reportacero_steel_prices_ma_30": 0.02487324928118702,
+    "focus_coking_coal_price_ma_30_mxn": 0.02414489622987537,
+    "indexmundi_coal_price_ma_30": 0.023561758911707385,
+    "focus_coking_coal_price_ma_30": 0.023467139544312825,
+    "daily_metal_rebar_price": 0.02330481437567262,
+    "reportacero_steel_prices_ma_14": 0.021300139217913516,
+    "sp_goldman_sachs_commodity_index_ma_14": 0.018915864995459542,
+    "sp_goldman_sachs_commodity_index_ma_30": 0.016279004292969114,
+    "indexmundi_iron_ore_price_ma_14": 0.01569630146647915,
+    "indexmundi_iron_ore_price_ma_14_mxn": 0.012503646469602678
+  },
+  "data_sources": [
+    "IndexMundi",
+    "Daily Metal Price",
+    "Barchart",
+    "FocusEconomics",
+    "Regional Mexican (Platts, Reportacero)",
+    "Commodity Indices",
+    "Geopolitical Indicators"
+  ]
+}
