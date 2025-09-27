@@ -160,11 +160,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     name: 🚀 Deploy to GCP
-    if: github.ref == 'refs/heads/main' && secrets.GCP_SA_KEY != ''
+    if: github.ref == 'refs/heads/main'
     environment: production
     
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Check GCP credentials
+      run: |
+        if [ -z "${{ secrets.GCP_SA_KEY }}" ]; then
+          echo "❌ GCP_SA_KEY secret not configured"
+          echo "Please configure the GCP_SA_KEY secret in GitHub Settings > Secrets"
+          exit 1
+        fi
+        echo "✅ GCP credentials found"
     
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
@@ -213,12 +222,12 @@ jobs:
           })
 
   deploy-info:
-    needs: build
+    needs: deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && secrets.GCP_SA_KEY == ''
+    if: github.ref == 'refs/heads/main' && failure()
     
     steps:
-    - name: Comment deployment info
+    - name: Comment deployment failure info
       uses: actions/github-script@v7
       with:
         script: |
@@ -226,9 +235,14 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `📋 **Build Successful - Manual Deployment Required**
+            body: `📋 **Deployment Failed - Configuration Required**
             
-            El build se completó exitosamente, pero el despliegue automático requiere configuración de Google Cloud.
+            El build se completó exitosamente, pero el despliegue falló. Esto usualmente indica que falta configuración.
+            
+            **Para configurar despliegue automático:**
+            1. Crear Service Account en Google Cloud
+            2. Agregar secreto GCP_SA_KEY en GitHub Settings > Secrets
+            3. Hacer push a main para activar despliegue automático
             
             **Para desplegar manualmente:**
             \`\`\`bash
@@ -240,17 +254,14 @@ jobs:
             bash deployment/cloud/deploy_manual.sh
             \`\`\`
             
-            **Para configurar despliegue automático:**
-            1. Crear Service Account en Google Cloud
-            2. Agregar secreto GCP_SA_KEY en GitHub Settings > Secrets
-            3. Hacer push a main para activar despliegue automático`
+            **Verificar logs del deploy en la pestaña Actions para más detalles.**`
           })
 
   health-check:
     needs: deploy
     runs-on: ubuntu-latest
     name: 🏥 Health Check
-    if: always() && needs.deploy.result == 'success'
+    if: success()
     
     steps:
     - name: Wait for service to be ready
@@ -284,5 +295,7 @@ jobs:
           echo "🌐 URL: https://steel-rebar-predictor-646072255295.us-central1.run.app"
         else
           echo "❌ Deployment failed or health check failed"
+          echo "Deploy result: ${{ needs.deploy.result }}"
+          echo "Health check result: ${{ needs.health-check.result }}"
           exit 1
         fi
