@@ -34,9 +34,9 @@ gcloud services enable cloudbuild.googleapis.com
 gcloud services enable run.googleapis.com
 gcloud services enable containerregistry.googleapis.com
 
-# Build and deploy using Cloud Build
-echo "🏗️ Building and deploying application..."
-gcloud builds submit --config cloudbuild.yaml .
+# Build and deploy using Cloud Build with new structure
+echo "🏗️ Building and deploying application with new structure..."
+gcloud builds submit --config deployment/cloud/cloudbuild.yaml .
 
 # Get the service URL
 SERVICE_URL=$(gcloud run services describe steel-rebar-predictor --region=us-central1 --format="value(status.url)")

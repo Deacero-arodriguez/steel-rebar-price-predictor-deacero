@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 #!/usr/bin/env python3
 """
 Predicción Detallada para Octubre 2025 con Análisis de Tipos de Cambio para DeAcero.
@@ -312,7 +317,7 @@ def main():
     }
     
     # Guardar resultados
-    with open('october_2025_detailed_analysis.json', 'w') as f:
+    with open('../../data/predictions/october_2025_detailed_analysis.json', 'w') as f:
         json.dump(api_response, f, indent=2)
     
     print(f"\n💾 Análisis detallado guardado en: october_2025_detailed_analysis.json")

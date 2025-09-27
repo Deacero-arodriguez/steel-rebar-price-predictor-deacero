@@ -296,7 +296,7 @@ def generate_compliance_report():
     }
     
     # Guardar reporte
-    with open('api_compliance_report.json', 'w') as f:
+    with open('../../data/predictions/api_compliance_report.json', 'w') as f:
         json.dump(compliance_report, f, indent=2)
     
     print(f"\n💾 Reporte guardado en: api_compliance_report.json")

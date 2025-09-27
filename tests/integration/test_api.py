@@ -6,8 +6,8 @@ from unittest.mock import patch, MagicMock
 import pandas as pd
 from datetime import datetime
 
-from app.main import app
-from app.config import settings
+from src.app.main import app
+from src.app.config import settings
 
 client = TestClient(app)
 

@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 #!/usr/bin/env python3
 """
 Predicción Octubre 2025 con Confianza Dinámica - Integración completa.
@@ -9,12 +14,16 @@ import pandas as pd
 import json
 from datetime import datetime, timedelta
 import joblib
-from dynamic_confidence_calculator import DynamicConfidenceCalculator
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+from scripts.utilities.dynamic_confidence_calculator import DynamicConfidenceCalculator
 
 def load_comprehensive_model():
     """Cargar modelo comprehensivo entrenado."""
     try:
-        model_data = joblib.load('comprehensive_steel_rebar_model.pkl')
+        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "data", "models", "comprehensive_steel_rebar_model.pkl")
+        model_data = joblib.load(model_path)
         print("✅ Modelo comprehensivo cargado exitosamente")
         return model_data
     except Exception as e:
@@ -333,7 +342,7 @@ def main():
         print(f"      Ancho: ${interval['width']:.2f} USD/ton")
         
         # Guardar resultados
-        output_file = 'october_2025_prediction_with_dynamic_confidence.json'
+        output_file = os.path.join(os.path.dirname(__file__), "..", "..", "data", "predictions", "october_2025_prediction_with_dynamic_confidence.json")
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
@@ -348,7 +357,7 @@ def main():
         print(f"   🔄 Actualización: {recommendations['update_frequency']}")
         
         return results
-        
+
     except Exception as e:
         print(f"❌ Error en la predicción: {e}")
         return None

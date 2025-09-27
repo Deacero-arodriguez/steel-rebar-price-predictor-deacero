@@ -29,7 +29,7 @@ def main():
         
         # Intentar importar la aplicación
         try:
-            from app.main import app
+            from src.app.main import app
             print("✅ Aplicación FastAPI importada correctamente")
         except Exception as e:
             print(f"⚠️ Error importando la aplicación: {e}")

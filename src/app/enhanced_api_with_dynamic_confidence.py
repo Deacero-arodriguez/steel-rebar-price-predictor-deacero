@@ -13,7 +13,7 @@ from typing import Dict, Optional
 import json
 
 # Importar nuestro calculador de confianza dinámica
-from dynamic_confidence_calculator import DynamicConfidenceCalculator
+from scripts.utilities.dynamic_confidence_calculator import DynamicConfidenceCalculator
 
 app = FastAPI(
     title="Steel Rebar Price Predictor API - Enhanced with Dynamic Confidence",

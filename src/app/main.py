@@ -8,16 +8,16 @@ import logging
 import asyncio
 from typing import Optional
 
-from app.config import settings
-from app.models.schemas import (
+from src.app.config import settings
+from src.app.models.schemas import (
     PredictionResponse, 
     ServiceInfoResponse, 
     ErrorResponse,
     ModelExplanationResponse
 )
-from app.services.data_collector import DataCollector
-from app.services.cache_service import CacheService
-from app.models.ml_model import SteelRebarPredictor
+from src.app.services.data_collector import DataCollector
+from src.app.services.cache_service import CacheService
+from src.app.models.ml_model import SteelRebarPredictor
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

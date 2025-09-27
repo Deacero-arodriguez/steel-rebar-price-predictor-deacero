@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 #!/usr/bin/env python3
 """
 Steel Rebar Price Prediction with Enhanced Currency Analysis for DeAcero.
@@ -136,7 +141,7 @@ def train_enhanced_model_with_currency(data):
     print("\n🤖 Entrenando modelo mejorado con análisis de tipos de cambio...")
     
     try:
-        from enhanced_ml_model import EnhancedSteelRebarPredictor
+        import sys; sys.path.append("../../scripts/model_training"); from scripts.model_training.enhanced_ml_model import EnhancedSteelRebarPredictor
         
         # Crear modelo mejorado
         enhanced_model = EnhancedSteelRebarPredictor()
@@ -367,7 +372,7 @@ def main():
     }
     
     # Guardar resultados
-    with open('october_2025_prediction_with_currency.json', 'w') as f:
+    with open('../../data/predictions/october_2025_prediction_with_currency.json', 'w') as f:
         json.dump(api_response, f, indent=2)
     
     print(f"\n💾 Resultados guardados en: october_2025_prediction_with_currency.json")

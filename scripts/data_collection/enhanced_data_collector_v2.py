@@ -495,7 +495,7 @@ def main():
             print(f"   {source}: {analysis['column_count']} columns, {analysis['data_completeness']:.1%} completeness")
         
         # Save enhanced data
-        enhanced_data.to_csv('enhanced_steel_data_v2.csv', index=False)
+        enhanced_data.to_csv('../../data/processed/enhanced_steel_data_v2.csv', index=False)
         print(f"\n💾 Enhanced data saved to: enhanced_steel_data_v2.csv")
         
     else:

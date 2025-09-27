@@ -49,17 +49,30 @@ pip install -r config/requirements.txt
 # Ejecutar aplicación
 python scripts/utilities/run_local.py
 
+# Ejecutar demo (sin servidor)
+python scripts/utilities/demo.py
+
 # Ejecutar tests
 pytest tests/
+
+# Probar predicción con confianza dinámica
+python scripts/predictions/predict_october_2025_with_dynamic_confidence.py
 ```
 
 ### Despliegue
 ```bash
-# Docker
+# Docker (desde la raíz del proyecto)
+docker build -f deployment/docker/Dockerfile -t steel-rebar-predictor .
+docker run -p 8000:8000 steel-rebar-predictor
+
+# Docker Compose
 docker-compose -f deployment/docker/docker-compose.yml up
 
-# Google Cloud
+# Google Cloud (CI/CD automático)
 bash deployment/cloud/deploy.sh
+
+# GitHub Actions (automático en push a main)
+# El workflow está en .github/workflows/ci-cd.yml
 ```
 
 ## 📊 Predicciones Disponibles

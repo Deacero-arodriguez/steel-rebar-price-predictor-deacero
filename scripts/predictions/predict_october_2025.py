@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 #!/usr/bin/env python3
 """
 Script especializado para predecir precios de varilla corrugada para octubre de 2025.
@@ -89,8 +94,8 @@ def train_model_and_predict():
     print("\n🤖 Entrenando modelo para predicción de octubre 2025...")
     
     try:
-        from app.models.ml_model import SteelRebarPredictor
-        from app.services.data_collector import DataCollector
+        from src.app.models.ml_model import SteelRebarPredictor
+        from src.app.services.data_collector import DataCollector
         
         # Crear datos históricos
         economic_data = create_historical_data()

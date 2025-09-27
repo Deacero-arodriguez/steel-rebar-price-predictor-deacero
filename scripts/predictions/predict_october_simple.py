@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "utilities"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "src"))
+
 #!/usr/bin/env python3
 """
 Predicción simplificada de precios de varilla corrugada para octubre de 2025.
@@ -213,7 +218,7 @@ def main():
     }
     
     # Guardar resultados
-    with open('october_2025_prediction.json', 'w') as f:
+    with open('../../data/predictions/october_2025_prediction.json', 'w') as f:
         json.dump(api_response, f, indent=2)
     
     print(f"\n💾 Resultados guardados en: october_2025_prediction.json")

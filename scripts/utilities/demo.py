@@ -19,7 +19,7 @@ def demo_data_collection():
     print("=" * 50)
     
     try:
-        from app.services.data_collector import DataCollector
+        from src.app.services.data_collector import DataCollector
         data_collector = DataCollector()
         
         print("🔍 Recopilando datos de Yahoo Finance...")
@@ -76,8 +76,8 @@ def demo_model_training(economic_data):
     print("=" * 50)
     
     try:
-        from app.models.ml_model import SteelRebarPredictor
-        from app.services.data_collector import DataCollector
+        from src.app.models.ml_model import SteelRebarPredictor
+        from src.app.services.data_collector import DataCollector
         
         ml_model = SteelRebarPredictor()
         data_collector = DataCollector()

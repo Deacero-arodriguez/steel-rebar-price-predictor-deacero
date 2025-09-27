@@ -381,7 +381,7 @@ def save_comprehensive_model(model, scaler, feature_names, feature_importance, c
     }
     
     # Guardar modelo
-    joblib.dump(model_data, 'comprehensive_steel_rebar_model.pkl')
+    joblib.dump(model_data, '../../data/models/comprehensive_steel_rebar_model.pkl')
     
     # Guardar metadatos
     metadata = {
@@ -397,7 +397,7 @@ def save_comprehensive_model(model, scaler, feature_names, feature_importance, c
         'data_sources': model_data['data_sources']
     }
     
-    with open('comprehensive_model_metadata.json', 'w') as f:
+    with open('../../data/models/comprehensive_model_metadata.json', 'w') as f:
         json.dump(metadata, f, indent=2)
     
     print(f"✅ Modelo guardado:")

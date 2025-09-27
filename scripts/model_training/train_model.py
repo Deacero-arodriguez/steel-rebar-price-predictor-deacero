@@ -13,10 +13,10 @@ from pathlib import Path
 # Agregar el directorio app al path
 sys.path.append(str(Path(__file__).parent / "app"))
 
-from app.services.data_collector import DataCollector
-from app.models.ml_model import SteelRebarPredictor
-from app.services.cache_service import CacheService
-from app.config import settings
+from src.app.services.data_collector import DataCollector
+from src.app.models.ml_model import SteelRebarPredictor
+from src.app.services.cache_service import CacheService
+from src.app.config import settings
 
 # Configurar logging
 logging.basicConfig(

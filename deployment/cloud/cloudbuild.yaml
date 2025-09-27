@@ -1,11 +1,11 @@
 steps:
-  # Build the Docker image
+  # Build the Docker image from the project root
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/steel-rebar-predictor:$COMMIT_SHA', '.']
+    args: ['build', '-f', 'deployment/docker/Dockerfile', '-t', 'gcr.io/$PROJECT_ID/steel-rebar-predictor:latest', '.']
   
   # Push the image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/steel-rebar-predictor:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/steel-rebar-predictor:latest']
   
   # Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -14,7 +14,7 @@ steps:
     - 'deploy'
     - 'steel-rebar-predictor'
     - '--image'
-    - 'gcr.io/$PROJECT_ID/steel-rebar-predictor:$COMMIT_SHA'
+    - 'gcr.io/$PROJECT_ID/steel-rebar-predictor:latest'
     - '--region'
     - 'us-central1'
     - '--platform'
@@ -28,6 +28,8 @@ steps:
     - '10'
     - '--set-env-vars'
     - 'API_KEY=deacero_steel_predictor_2025_key'
+    - '--port'
+    - '8080'
 
 options:
   machineType: 'E2_HIGHCPU_8'
