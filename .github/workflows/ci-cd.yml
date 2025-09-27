@@ -1,14 +1,29 @@
-name: CI/CD Pipeline - Steel Rebar Price Predictor
+name: 🚀 Steel Rebar Price Predictor - CI/CD Pipeline
 
 on:
   push:
     branches: [ main, develop ]
+    tags: [ 'v*' ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+  schedule:
+    # Ejecutar tests diariamente a las 6 AM UTC
+    - cron: '0 6 * * *'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    name: 🧪 Tests y Validación
     
     steps:
     - uses: actions/checkout@v4
@@ -48,10 +63,80 @@ jobs:
       run: |
         python scripts/utilities/verify_api_format.py
 
-  build:
-    needs: test
+  security-scan:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    name: 🔒 Security Scan
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install security tools
+      run: |
+        pip install bandit safety
+    
+    - name: Run Bandit Security Scan
+      run: |
+        bandit -r src/ scripts/ -f json -o bandit-report.json || true
+        bandit -r src/ scripts/ -f txt
+    
+    - name: Run Safety Check
+      run: |
+        safety check --json --output safety-report.json || true
+        safety check
+    
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+
+  code-quality:
+    runs-on: ubuntu-latest
+    name: 📊 Code Quality
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install quality tools
+      run: |
+        pip install black isort mypy pylint
+    
+    - name: Check code formatting with Black
+      run: |
+        black --check src/ scripts/ || echo "Code formatting issues found"
+    
+    - name: Check import sorting with isort
+      run: |
+        isort --check-only src/ scripts/ || echo "Import sorting issues found"
+    
+    - name: Run MyPy type checking
+      run: |
+        mypy src/ --ignore-missing-imports || echo "Type checking issues found"
+    
+    - name: Run Pylint
+      run: |
+        pylint src/ scripts/ --disable=C0114,C0116 || echo "Code quality issues found"
+
+  build:
+    needs: [test, security-scan, code-quality]
+    runs-on: ubuntu-latest
+    name: 🏗️ Build Docker Image
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     
     steps:
     - uses: actions/checkout@v4
@@ -74,7 +159,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    name: 🚀 Deploy to GCP
     if: github.ref == 'refs/heads/main' && secrets.GCP_SA_KEY != ''
+    environment: production
     
     steps:
     - uses: actions/checkout@v4
@@ -158,3 +245,44 @@ jobs:
             2. Agregar secreto GCP_SA_KEY en GitHub Settings > Secrets
             3. Hacer push a main para activar despliegue automático`
           })
+
+  health-check:
+    needs: deploy
+    runs-on: ubuntu-latest
+    name: 🏥 Health Check
+    if: always() && needs.deploy.result == 'success'
+    
+    steps:
+    - name: Wait for service to be ready
+      run: sleep 30
+    
+    - name: Check service health
+      run: |
+        echo "🔍 Checking service health..."
+        curl -f https://steel-rebar-predictor-646072255295.us-central1.run.app/health || exit 1
+        echo "✅ Health check passed"
+    
+    - name: Test prediction endpoint
+      run: |
+        echo "🔍 Testing prediction endpoint..."
+        curl -f -H "X-API-Key: deacero_steel_predictor_2025_key" \
+             https://steel-rebar-predictor-646072255295.us-central1.run.app/predict/steel-rebar-price || exit 1
+        echo "✅ Prediction endpoint working"
+
+  notify:
+    needs: [deploy, health-check]
+    runs-on: ubuntu-latest
+    name: 📢 Notification
+    if: always()
+    
+    steps:
+    - name: Notify deployment status
+      run: |
+        if [ "${{ needs.deploy.result }}" == "success" ] && [ "${{ needs.health-check.result }}" == "success" ]; then
+          echo "🎉 Deployment successful!"
+          echo "✅ Service is healthy and responding"
+          echo "🌐 URL: https://steel-rebar-predictor-646072255295.us-central1.run.app"
+        else
+          echo "❌ Deployment failed or health check failed"
+          exit 1
+        fi

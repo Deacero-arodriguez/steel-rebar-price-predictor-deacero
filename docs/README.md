@@ -376,6 +376,86 @@ RATE_LIMIT=100  # requests per hour
 - `predict_october_2025_with_dynamic_confidence.py` - Predicciones con confianza dinámica
 - `OCTUBRE_2025_CONFIANZA_DINAMICA_RESUMEN.md` - Resumen ejecutivo
 
+## 🌐 **Deploy en Producción - GCP**
+
+### **✅ Estado del Deploy**
+- **URL del Servicio**: `https://steel-rebar-predictor-646072255295.us-central1.run.app`
+- **Estado**: ✅ **ACTIVO Y FUNCIONANDO**
+- **Proyecto GCP**: `steel-rebar-predictor-deacero`
+- **Región**: `us-central1`
+- **Último Deploy**: Septiembre 2025
+
+### **🔗 Endpoints en Producción**
+
+1. **Información del Servicio** (Público):
+   ```
+   GET https://steel-rebar-predictor-646072255295.us-central1.run.app/
+   ```
+
+2. **Health Check** (Público):
+   ```
+   GET https://steel-rebar-predictor-646072255295.us-central1.run.app/health
+   ```
+
+3. **Predicción de Precios** (Requiere API Key):
+   ```
+   GET https://steel-rebar-predictor-646072255295.us-central1.run.app/predict/steel-rebar-price
+   Headers: X-API-Key: deacero_steel_predictor_2025_key
+   ```
+
+### **📋 Comandos de Deploy**
+
+#### **GitHub Actions (Actual)**
+```bash
+# Deploy automático
+git push origin main
+```
+
+#### **GitLab CI/CD (Nuevo)**
+```bash
+# Deploy automático
+git push origin main
+```
+
+#### **Deploy Manual**
+```bash
+# Deploy manual a GCP
+bash deployment/cloud/deploy.sh
+```
+
+### **💰 Costos GCP**
+- **Cloud Run**: ~$0.50 USD/mes (tráfico bajo)
+- **Container Registry**: ~$0.10 USD/mes
+- **Cloud Build**: ~$0.30 USD/mes
+- **Total estimado**: < $1 USD/mes (muy por debajo del límite de $5 USD)
+
+## 🚀 **GitHub Actions CI/CD Integration**
+
+### **✅ Pipeline Configurado**
+- **Archivo**: `.github/workflows/ci-cd.yml`
+- **Stages**: Test → Security Scan → Code Quality → Build → Deploy → Health Check → Notify
+- **Deploy automático** a GCP en push a `main`
+- **Health checks** post-deploy
+- **Security scanning** con Bandit y Safety
+- **Code quality** con Black, isort, MyPy, Pylint
+
+### **🔧 Configuración Requerida**
+1. **Secrets en GitHub** (Settings > Secrets and variables > Actions):
+   - `GCP_SA_KEY` (Service Account Key JSON)
+   - `GCP_PROJECT_ID` (steel-rebar-predictor-deacero)
+
+2. **Service Account en GCP**:
+   - Roles: `roles/run.admin`, `roles/iam.serviceAccountUser`, `roles/storage.admin`
+
+### **📋 Jobs del Pipeline**
+- **🧪 Test**: Tests unitarios, integración y validación de formato API
+- **🔒 Security Scan**: Análisis de seguridad con Bandit y Safety
+- **📊 Code Quality**: Formateo, orden de imports, type checking
+- **🏗️ Build**: Construcción de imagen Docker y push a GCR
+- **🚀 Deploy**: Despliegue automático a Cloud Run
+- **🏥 Health Check**: Verificación de endpoints post-deploy
+- **📢 Notify**: Notificaciones de estado del deploy
+
 ## 🚨 Limitaciones y Consideraciones
 
 ### Limitaciones Técnicas
