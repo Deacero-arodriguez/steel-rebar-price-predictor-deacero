@@ -1,0 +1,43 @@
+# Ignore files that shouldn't be deployed to Google Cloud
+.git
+.gitignore
+README.md
+.env
+.env.local
+.env.example
+*.pyc
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# Model files (will be generated at runtime)
+*.joblib
+*.pkl
+models/

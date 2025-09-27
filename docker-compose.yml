@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Aplicación principal
+  steel-rebar-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - API_KEY=deacero_steel_predictor_2025_key
+      - REDIS_URL=redis://redis:6379
+      - YAHOO_FINANCE_ENABLED=true
+      - MODEL_UPDATE_FREQUENCY=24
+      - CACHE_TTL=3600
+      - RATE_LIMIT=100
+    depends_on:
+      - redis
+    volumes:
+      - ./models:/app/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis para cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Servicio de monitoreo (opcional)
+  monitoring:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: steel-rebar-network
