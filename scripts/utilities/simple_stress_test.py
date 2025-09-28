@@ -114,7 +114,8 @@ async def stress_test_simple(num_requests=10, concurrent=5):
     if failed:
         print(f"   ⚠️  Errores:")
         for error in failed[:5]:  # Mostrar solo los primeros 5 errores
-            print(f"      - {error.get('error', f'Status {error.get('status_code', 'unknown')}')}")
+            error_msg = error.get('error', f"Status {error.get('status_code', 'unknown')}")
+            print(f"      - {error_msg}")
 
 async def main():
     """Función principal."""
