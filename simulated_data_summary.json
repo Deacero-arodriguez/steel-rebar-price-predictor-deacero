@@ -1,0 +1,58 @@
+{
+  "simulation_date": "2025-09-28T14:26:44.532349",
+  "period": "2024-01-01 to 2024-12-31",
+  "total_days": 366,
+  "commodities_simulated": {
+    "steel_rebar": {
+      "base_price": 650,
+      "volatility": 50,
+      "trend": 100.0,
+      "seasonal_amplitude": 29.999566519521558,
+      "price_range": [
+        565.6986528524037,
+        810.2422245904394
+      ]
+    },
+    "usd_mxn": {
+      "base_rate": 20.0,
+      "volatility": 2.0,
+      "trend": 5.0,
+      "seasonal_amplitude": 1.499978325976078,
+      "rate_range": [
+        18.0,
+        30.0125832903068
+      ]
+    },
+    "iron_ore": {
+      "base_price": 100,
+      "volatility": 20,
+      "trend": 40.0,
+      "seasonal_amplitude": 14.999783259760779,
+      "price_range": [
+        60.0,
+        196.721220313727
+      ]
+    },
+    "coking_coal": {
+      "base_price": 150,
+      "volatility": 30,
+      "trend": 50.0,
+      "seasonal_amplitude": 19.999711013014373,
+      "price_range": [
+        100.0,
+        266.2237806640602
+      ]
+    }
+  },
+  "correlations": {
+    "rebar_iron_ore": 0.11059579456860061,
+    "rebar_coal": 0.05647991590551914,
+    "iron_ore_coal": 0.13175041731040626
+  },
+  "volatility_analysis": {
+    "rebar_avg_volatility_30d": 49.14056368661314,
+    "rebar_max_volatility_30d": 58.15836035493427,
+    "usd_mxn_avg_volatility_30d": 1.9173118308028456,
+    "usd_mxn_max_volatility_30d": 2.4282065906255466
+  }
+}
