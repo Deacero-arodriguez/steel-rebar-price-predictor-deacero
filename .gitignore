@@ -1,8 +1,12 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -16,17 +20,138 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
 
-# Virtual environments
-venv/
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
 env/
+venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Project specific
+*.pkl
+*.csv
+*.json
+!requirements.txt
+!config/*.json
+!docs/**/*.json
+
+# API Keys and secrets
+.env
+*.key
+secrets.json
+credentials.json
+
+# Logs
+*.log
+logs/
+log/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
 
 # IDE
 .vscode/
@@ -39,43 +164,47 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Model files (keep only the latest)
+data/models/*.pkl
+!data/models/alpha_vantage_model_*.pkl
+data/models/*.csv
+!data/models/alpha_vantage_feature_importance_*.csv
+data/models/*.json
+!data/models/alpha_vantage_metadata_*.json
+
+# Data files (keep only processed)
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-data/models/*.pkl
-data/models/*.joblib
-!data/models/.gitkeep
-data/predictions/*.json
+!data/processed/enhanced_steel_data_v2.csv
+
+# Predictions (keep only latest)
+data/predictions/*
 !data/predictions/.gitkeep
 
-# Logs
-*.log
-logs/
+# Test results
+test_results/
+*_test_results.json
 
-# Environment variables
-.env
-.env.local
-.env.production
+# Documentation temporary files
+*_temp.md
+*_backup.md
+*_old.md
+*_draft.md
 
-# Temporary files
-*.tmp
-*.temp
-temp/
-tmp/
+# Script outputs
+output/
+results/
+*.output
 
-# Coverage reports
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
+# Cache
+.cache/
+cache/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Node modules (if any)
+node_modules/
 
-# pyenv
-.python-version
-
-# Docker
-.dockerignore
+# Build artifacts
+build/
+dist/

@@ -1,131 +1,159 @@
-# Steel Rebar Price Predictor API - Dynamic Confidence Edition
+# Steel Rebar Price Predictor
+## Sistema de Predicción de Precios de Varilla de Acero para DeAcero
 
-Un API REST de vanguardia para predecir precios de varilla corrugada utilizando machine learning comprehensivo con **sistema de confianza dinámica**.
-
-## 📁 Estructura del Proyecto
-
-```
-steel-rebar-predictor/
-├── src/                          # Código fuente principal
-│   └── app/                      # Aplicación FastAPI
-│       ├── models/               # Modelos de datos y ML
-│       ├── services/             # Servicios de negocio
-│       └── utils/                # Utilidades
-├── scripts/                      # Scripts organizados por propósito
-│   ├── data_collection/          # Recolección de datos
-│   ├── model_training/           # Entrenamiento de modelos
-│   ├── predictions/              # Scripts de predicción
-│   └── utilities/                # Utilidades generales
-├── docs/                         # Documentación
-│   ├── api/                      # Documentación de API
-│   ├── technical/                # Documentación técnica
-│   ├── predictions/              # Análisis de predicciones
-│   └── deployment/               # Guías de despliegue
-├── data/                         # Datos organizados
-│   ├── raw/                      # Datos sin procesar
-│   ├── processed/                # Datos procesados
-│   ├── models/                   # Modelos entrenados
-│   └── predictions/              # Resultados de predicciones
-├── tests/                        # Tests organizados
-│   ├── unit/                     # Tests unitarios
-│   ├── integration/              # Tests de integración
-│   └── fixtures/                 # Datos de prueba
-├── config/                       # Configuración
-├── deployment/                   # Archivos de despliegue
-│   ├── docker/                   # Configuración Docker
-│   └── cloud/                    # Configuración cloud
-├── notebooks/                    # Jupyter notebooks
-├── assets/                       # Recursos estáticos
-└── README.md                     # Este archivo
-```
-
-## 🚀 Inicio Rápido
-
-### Desarrollo Local
-```bash
-# Instalar dependencias
-pip install -r config/requirements.txt
-
-# Ejecutar aplicación
-python scripts/utilities/run_local.py
-
-# Ejecutar demo (sin servidor)
-python scripts/utilities/demo.py
-
-# Ejecutar tests
-pytest tests/
-
-# Probar predicción con confianza dinámica
-python scripts/predictions/predict_october_2025_with_dynamic_confidence.py
-```
-
-### Despliegue
-```bash
-# Docker (desde la raíz del proyecto)
-docker build -f deployment/docker/Dockerfile -t steel-rebar-predictor .
-docker run -p 8000:8000 steel-rebar-predictor
-
-# Docker Compose
-docker-compose -f deployment/docker/docker-compose.yml up
-
-# Google Cloud (CI/CD automático)
-bash deployment/cloud/deploy.sh
-
-# GitHub Actions (automático en push a main)
-# El workflow está en .github/workflows/ci-cd.yml
-```
-
-## 📊 Predicciones Disponibles
-
-- **Octubre 2025**: Ver `docs/predictions/`
-- **Análisis de confianza dinámica**: Ver `scripts/predictions/`
-- **Documentación técnica**: Ver `docs/technical/`
-
-## ⚡ Optimizaciones Implementadas
-
-### **Perfiles de Entrenamiento Optimizados**
-```bash
-# Entrenamiento ultra rápido (desarrollo)
-python scripts/model_training/optimized_training.py --profile ultra_fast
-
-# Entrenamiento balanceado (producción recomendado)
-python scripts/model_training/optimized_training.py --profile balanced
-
-# Entrenamiento de alta precisión (análisis especializado)
-python scripts/model_training/optimized_training.py --profile high_precision
-```
-
-### **Optimizaciones de Costos GCP**
-```bash
-# Aplicar optimizaciones de Cloud Run
-python scripts/utilities/apply_cloud_run_optimizations.py
-
-# Analizar costos y generar reportes
-python scripts/utilities/cost_optimization_analyzer.py
-
-# Benchmark de rendimiento
-python scripts/utilities/performance_benchmark.py
-```
-
-### **Resultados de Optimización**
-- **Tiempo de entrenamiento**: Reducido de 5-8 min a 3-4 min (perfil balanced)
-- **Costo mensual**: Reducido de $19.18 a ~$4.82 USD/mes
-- **Cumplimiento presupuesto**: ✅ SÍ ($4.82 < $5.00)
-- **Precisión del modelo**: Mantenida en 90%+
-
-## 🎯 Características Principales
-
-- **Confianza dinámica**: 90.1% vs 85% estático
-- **13 fuentes de datos** integradas
-- **136 features** en el modelo
-- **Intervalos de predicción** reales
-- **Análisis USD/MXN** para DeAcero
-- **Perfiles de entrenamiento optimizados**: 1-8 min según necesidades
-- **Costos optimizados**: < $5 USD/mes (cumple presupuesto)
-- **Monitoreo automático** de rendimiento y costos
+API REST para predecir el precio de cierre del día siguiente de la varilla de acero utilizando Machine Learning.
 
 ---
 
-**Desarrollado por**: Armando Rodriguez Rocha  
-**Contacto**: [rr.armando@gmail.com]  
-**Versión**: 2.2.0 - Optimized Performance Edition
+## Resumen del Proyecto
+
+### Objetivo
+Desarrollar un sistema de predicción de precios de varilla de acero que permita a DeAcero optimizar sus estrategias de compra de materias primas y fijación de precios.
+
+### Resultados Técnicos
+- **Precisión del Modelo**: MAPE 0.25% (Test), R² 0.9820
+- **Variables del Modelo**: 37 features específicas de varilla
+- **Fuentes de Datos**: 4 fuentes reales integradas
+- **Período de Datos**: 2020-2024 (1,827 registros diarios)
+- **Costo de Operación**: $0 USD/mes (APIs gratuitas)
+
+### API en Producción
+- **URL**: https://steel-rebar-predictor-646072255295.us-central1.run.app
+- **Estado**: Activo
+- **Disponibilidad**: 24/7
+- **Tiempo de respuesta**: < 2 segundos
+
+---
+
+## Documentación del Proyecto
+
+### 📊 Documentación Ejecutiva
+- **[Resumen Ejecutivo](docs/executive/EXECUTIVE_SUMMARY.md)** - Resumen para gerencia
+
+### 📋 Documentación del Proyecto
+- **[Paquete de Entrega](docs/project/DELIVERY_PACKAGE.md)** - Paquete completo para evaluación
+- **[Control de Versiones](docs/project/VERSION.md)** - Historial de versiones
+
+### 🔧 Documentación Técnica
+- **[Referencia de API](docs/api/API_REFERENCE.md)** - Documentación completa de la API
+- **[Documentación del Modelo](docs/model/MODEL_DOCUMENTATION.md)** - Detalles del modelo ML
+- **[Guía de Despliegue](docs/deployment/DEPLOYMENT_GUIDE.md)** - Instrucciones de despliegue
+- **[Ejemplos de Uso](docs/examples/USAGE_EXAMPLES.md)** - Ejemplos prácticos
+
+---
+
+## Uso Rápido de la API
+
+### Autenticación
+```bash
+X-API-Key: deacero_steel_predictor_2025_key
+```
+
+### Endpoints
+1. **Información del servicio**: `GET /`
+2. **Predicción de precio**: `GET /predict/steel-rebar-price`
+
+### Ejemplo de Uso
+```bash
+curl -H "X-API-Key: deacero_steel_predictor_2025_key" \
+     https://steel-rebar-predictor-646072255295.us-central1.run.app/predict/steel-rebar-price
+```
+
+---
+
+## Estructura del Proyecto
+
+```
+steel-rebar-predictor/
+├── docs/                    # Documentación completa
+│   ├── executive/          # Documentación ejecutiva
+│   ├── project/            # Documentación del proyecto
+│   ├── api/                # Documentación de la API
+│   ├── model/              # Documentación del modelo
+│   ├── deployment/         # Guías de despliegue
+│   └── examples/           # Ejemplos de uso
+├── src/                    # Código fuente
+├── scripts/                # Scripts de entrenamiento
+├── config/                 # Configuración
+├── data/                   # Datos y modelos
+├── deployment/             # Archivos de despliegue
+└── assets/                 # Recursos del proyecto
+```
+
+---
+
+## Instalación y Configuración
+
+### Prerrequisitos
+- Python 3.8+
+- pip
+- Git
+
+### Instalación
+```bash
+# Clonar repositorio
+git clone https://github.com/Deacero-arodriguez/steel-rebar-price-predictor-deacero.git
+cd steel-rebar-price-predictor-deacero
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar API localmente
+python main.py
+```
+
+---
+
+## Especificaciones Técnicas
+
+### Modelo de Machine Learning
+- **Algoritmo**: Random Forest Regressor
+- **Árboles**: 100
+- **Features**: 37 variables específicas de acero
+- **Validación**: Cross-validation temporal 5-fold
+
+### Infraestructura
+- **Plataforma**: Google Cloud Run
+- **Framework**: FastAPI (Python)
+- **Cache**: Redis (1 hora TTL)
+- **Monitoreo**: Cloud Logging & Monitoring
+
+### Fuentes de Datos
+- **Alpha Vantage**: Acciones de acero, ETFs de commodities
+- **FRED API**: Datos económicos oficiales
+- **World Bank**: Indicadores económicos globales
+- **Yahoo Finance**: Datos de mercado en tiempo real
+
+---
+
+## Cumplimiento de Especificaciones
+
+### Requerimientos Técnicos
+- ✅ **API REST**: Implementada con FastAPI
+- ✅ **Endpoint único**: `/predict/steel-rebar-price`
+- ✅ **Autenticación**: X-API-Key header
+- ✅ **Rate Limiting**: 100 requests/hora
+- ✅ **Cache**: 1 hora TTL máximo
+- ✅ **Tiempo de respuesta**: < 2 segundos
+- ✅ **Presupuesto**: < $5 USD/mes
+
+### Requerimientos Funcionales
+- ✅ **Predicción de precio**: Precio del día siguiente
+- ✅ **Formato JSON**: Respuesta estructurada
+- ✅ **Confianza del modelo**: Incluida en respuesta
+- ✅ **Datos reales**: Integrados de fuentes confiables
+- ✅ **Documentación**: Completa y técnica
+
+---
+
+## Información del Proyecto
+
+- **Desarrollador**: Equipo DeAcero Data & Analytics
+- **Empresa**: DeAcero S.A. de C.V.
+- **Versión**: 2.1.0
+- **Fecha**: 28 de septiembre de 2024
+- **Estado**: Completado y en Producción
+
+---
+
+**Para más información, consulta la documentación completa en el directorio `docs/`**
