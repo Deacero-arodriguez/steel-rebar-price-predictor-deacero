@@ -169,11 +169,32 @@ jobs:
         docker stop test-container
         docker rm test-container
 
+  deploy-info:
+    needs: build
+    runs-on: ubuntu-latest
+    name: 📋 Deploy Info
+    if: github.ref == 'refs/heads/main' && secrets.GCP_SA_KEY == ''
+    
+    steps:
+    - name: Manual Deploy Instructions
+      run: |
+        echo "🚀 Pipeline completado exitosamente!"
+        echo ""
+        echo "📋 Para habilitar deploy automático:"
+        echo "1. Ve a GitHub Settings → Secrets and variables → Actions"
+        echo "2. Agrega secreto 'GCP_SA_KEY' con tu Service Account JSON"
+        echo "3. Haz push a main para activar deploy automático"
+        echo ""
+        echo "🛠️ Para deploy manual:"
+        echo "bash deployment/cloud/deploy.sh"
+        echo ""
+        echo "✅ Todos los tests pasaron - el código está listo para producción"
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     name: 🚀 Deploy to GCP
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && secrets.GCP_SA_KEY != ''
     environment: production
     
     steps:
@@ -274,7 +295,7 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     name: 🏥 Health Check
-    if: success()
+    if: needs.deploy.result == 'success'
     
     steps:
     - name: Wait for service to be ready
@@ -294,7 +315,7 @@ jobs:
         echo "✅ Prediction endpoint working"
 
   notify:
-    needs: [deploy, health-check]
+    needs: [deploy, deploy-info, health-check]
     runs-on: ubuntu-latest
     name: 📢 Notification
     if: always()
@@ -306,9 +327,14 @@ jobs:
           echo "🎉 Deployment successful!"
           echo "✅ Service is healthy and responding"
           echo "🌐 URL: https://steel-rebar-predictor-646072255295.us-central1.run.app"
+        elif [ "${{ needs.deploy-info.result }}" == "success" ]; then
+          echo "✅ Pipeline completed successfully!"
+          echo "📋 Deploy automático deshabilitado - configura GCP_SA_KEY para habilitar"
+          echo "🛠️ Usa 'bash deployment/cloud/deploy.sh' para deploy manual"
         else
-          echo "❌ Deployment failed or health check failed"
+          echo "❌ Pipeline failed"
           echo "Deploy result: ${{ needs.deploy.result }}"
+          echo "Deploy-info result: ${{ needs.deploy-info.result }}"
           echo "Health check result: ${{ needs.health-check.result }}"
           exit 1
         fi
