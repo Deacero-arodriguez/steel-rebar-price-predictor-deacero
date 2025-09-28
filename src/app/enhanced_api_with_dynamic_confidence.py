@@ -6,14 +6,19 @@ Muestra cómo implementar confianza dinámica en lugar de valores estáticos.
 
 from fastapi import FastAPI, Depends, HTTPException, Header
 from pydantic import BaseModel, Field
-from datetime import datetime
+from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 from typing import Dict, Optional
 import json
+import logging
 
 # Importar nuestro calculador de confianza dinámica
 from scripts.utilities.dynamic_confidence_calculator import DynamicConfidenceCalculator
+
+# Configurar logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Steel Rebar Price Predictor API - Enhanced with Dynamic Confidence",
