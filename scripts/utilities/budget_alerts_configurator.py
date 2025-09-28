@@ -380,13 +380,13 @@ echo "✅ Verificación completada"
         
         for policy_name, policy_data in alert_policies.items():
             yaml_file = os.path.join(yaml_dir, policy_data['file_name'])
-            with open(yaml_file, 'w') as f:
+            with open(yaml_file, 'w', encoding='utf-8') as f:
                 f.write(policy_data['yaml_content'])
         
         # Guardar scripts
         for script_name, script_data in scripts.items():
             script_file = os.path.join(yaml_dir, script_data['file_name'])
-            with open(script_file, 'w') as f:
+            with open(script_file, 'w', encoding='utf-8') as f:
                 f.write(script_data['content'])
             # Hacer ejecutable
             os.chmod(script_file, 0o755)

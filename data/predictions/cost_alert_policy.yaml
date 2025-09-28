@@ -1,0 +1,15 @@
+displayName: "Daily Cost Alert"
+documentation:
+  content: "Daily cost exceeds $0.50 for Steel Rebar Predictor"
+  mimeType: "text/markdown"
+conditions:
+  - displayName: "Daily cost"
+    conditionThreshold:
+      filter: 'resource.type="project" AND resource.labels.project_id="steel-rebar-predictor-deacero"'
+      comparison: COMPARISON_GREATER_THAN
+      thresholdValue: 0.50
+      duration: 86400s
+alertStrategy:
+  autoClose: 604800s
+notificationChannels: []
+enabled: true
