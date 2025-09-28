@@ -17,8 +17,11 @@ COPY config/requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy simplified application
-COPY app_main.py ./
+# Copy application files
+COPY main.py ./
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+COPY data/ ./data/
 
 # Create directories for data storage
 RUN mkdir -p /app/data/models /app/data/predictions /app/data/processed /app/data/raw
@@ -34,5 +37,5 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
 
-# Run the simplified application
-CMD ["uvicorn", "app_main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
