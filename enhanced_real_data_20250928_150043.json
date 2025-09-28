@@ -1,0 +1,448 @@
+{
+  "yahoo_finance": {},
+  "fred": {},
+  "mexican": {},
+  "commodity_apis": {},
+  "world_bank_enhanced": {
+    "world_gdp": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        100,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Euro area",
+          "indicator": "GDP (current US$)",
+          "value": 13266853301191.7,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA & IBRD total",
+          "indicator": "GDP (current US$)",
+          "value": 32884865747902.1,
+          "value_change": 1.4787238542049912,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IBRD only",
+          "indicator": "GDP (current US$)",
+          "value": 30426310945474.6,
+          "value_change": -0.07476250081952496,
+          "value_ma_3": 25526009998189.47
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "High income",
+          "indicator": "GDP (current US$)",
+          "value": 56044969561614.3,
+          "value_change": 0.8419902978724418,
+          "value_ma_3": 39785382084997.0
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Heavily indebted poor countries (HIPC)",
+          "indicator": "GDP (current US$)",
+          "value": 820678273818.935,
+          "value_change": -0.9853567897308482,
+          "value_ma_3": 29097319593635.95
+        }
+      ]
+    },
+    "world_population": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        100,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Euro area",
+          "indicator": "Population, total",
+          "value": 346986142.0,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA & IBRD total",
+          "indicator": "Population, total",
+          "value": 6666779721.0,
+          "value_change": 18.21338899177132,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IBRD only",
+          "indicator": "Population, total",
+          "value": 4878606096.0,
+          "value_change": -0.268221495209651,
+          "value_ma_3": 3964123986.3333335
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "High income",
+          "indicator": "Population, total",
+          "value": 1393490142.0,
+          "value_change": -0.7143671543512129,
+          "value_ma_3": 4312958653.0
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Heavily indebted poor countries (HIPC)",
+          "indicator": "Population, total",
+          "value": 847743308.0,
+          "value_change": -0.3916402546032507,
+          "value_ma_3": 2373279848.6666665
+        }
+      ]
+    },
+    "world_inflation": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        100,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Euro area",
+          "indicator": "Inflation, consumer prices (annual %)",
+          "value": 0.186938139702131,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA & IBRD total",
+          "indicator": "Inflation, consumer prices (annual %)",
+          "value": 2.8981937602627,
+          "value_change": 14.503490967015663,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IBRD only",
+          "indicator": "Inflation, consumer prices (annual %)",
+          "value": 2.40414666699827,
+          "value_change": -0.1704672406787765,
+          "value_ma_3": 1.8297595223210337
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "High income",
+          "indicator": "Inflation, consumer prices (annual %)",
+          "value": 0.598986330824643,
+          "value_change": -0.7508528331291386,
+          "value_ma_3": 1.9671089193618707
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Heavily indebted poor countries (HIPC)",
+          "indicator": "Inflation, consumer prices (annual %)",
+          "value": 3.48393567493204,
+          "value_change": 4.8163859434581715,
+          "value_ma_3": 2.162356224251651
+        }
+      ]
+    },
+    "world_unemployment": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        100,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Euro area",
+          "indicator": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+          "value": 7.82955559700518,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA & IBRD total",
+          "indicator": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+          "value": 6.6438211420864,
+          "value_change": -0.15144339167504284,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IBRD only",
+          "indicator": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+          "value": 6.97213821285169,
+          "value_change": 0.049416903878629403,
+          "value_ma_3": 7.14850498398109
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "High income",
+          "indicator": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+          "value": 6.46161477782732,
+          "value_change": -0.07322336698422394,
+          "value_ma_3": 6.692524710921805
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Heavily indebted poor countries (HIPC)",
+          "indicator": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+          "value": 5.08466986799381,
+          "value_change": -0.21309610015106772,
+          "value_ma_3": 6.172807619557607
+        }
+      ]
+    },
+    "world_trade": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        79,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA & IBRD total",
+          "indicator": "Trade (% of GDP)",
+          "value": 45.5622437358698,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Europe & Central Asia",
+          "indicator": "Trade (% of GDP)",
+          "value": 77.0292361623349,
+          "value_change": 0.6906374630907843,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Central Europe and the Baltics",
+          "indicator": "Trade (% of GDP)",
+          "value": 114.570862331556,
+          "value_change": 0.48736853744861475,
+          "value_ma_3": 79.0541140765869
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IBRD only",
+          "indicator": "Trade (% of GDP)",
+          "value": 45.6572285085158,
+          "value_change": -0.6014935422551975,
+          "value_ma_3": 79.0857756674689
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Europe & Central Asia (excluding high income)",
+          "indicator": "Trade (% of GDP)",
+          "value": 66.0866026423523,
+          "value_change": 0.4474510346160434,
+          "value_ma_3": 75.43823116080803
+        }
+      ]
+    },
+    "world_manufacturing": {
+      "columns": [
+        "date",
+        "country",
+        "indicator",
+        "value",
+        "value_change",
+        "value_ma_3"
+      ],
+      "shape": [
+        93,
+        6
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-01-01T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "IDA blend",
+          "indicator": "Manufacturing, value added (% of GDP)",
+          "value": 12.0600538697832,
+          "value_change": NaN,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Euro area",
+          "indicator": "Manufacturing, value added (% of GDP)",
+          "value": 14.466815623484,
+          "value_change": 0.19956475980020372,
+          "value_ma_3": NaN
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "East Asia & Pacific (IDA & IBRD countries)",
+          "indicator": "Manufacturing, value added (% of GDP)",
+          "value": 25.040588532758,
+          "value_change": 0.7308984357351995,
+          "value_ma_3": 17.189152675341735
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "Europe & Central Asia",
+          "indicator": "Manufacturing, value added (% of GDP)",
+          "value": 13.9335302009417,
+          "value_change": -0.44356219173068123,
+          "value_ma_3": 17.813644785727902
+        },
+        {
+          "date": "2020-01-01 00:00:00",
+          "country": "East Asia & Pacific (excluding high income)",
+          "indicator": "Manufacturing, value added (% of GDP)",
+          "value": 25.0321992866608,
+          "value_change": 0.7965439429678054,
+          "value_ma_3": 21.335439340120164
+        }
+      ]
+    }
+  },
+  "enhanced_steel": {
+    "steel_rebar": {
+      "columns": [
+        "date",
+        "steel_rebar_price",
+        "price_change",
+        "price_ma_7",
+        "price_ma_30",
+        "volatility",
+        "trend",
+        "seasonal",
+        "economic_cycle"
+      ],
+      "shape": [
+        1827,
+        9
+      ],
+      "date_range": {
+        "start": "2020-01-01T00:00:00",
+        "end": "2024-12-31T00:00:00"
+      },
+      "sample_data": [
+        {
+          "date": "2020-01-01 00:00:00",
+          "steel_rebar_price": 665.6754445819296,
+          "price_change": 0.0,
+          "price_ma_7": NaN,
+          "price_ma_30": NaN,
+          "volatility": NaN,
+          "trend": 0.0,
+          "seasonal": 0.7740199915925927,
+          "economic_cycle": 0.0
+        },
+        {
+          "date": "2020-01-02 00:00:00",
+          "steel_rebar_price": 647.5513647460559,
+          "price_change": -0.027226601166363128,
+          "price_ma_7": NaN,
+          "price_ma_30": NaN,
+          "volatility": NaN,
+          "trend": 0.06571741511500548,
+          "seasonal": 1.5475056001515943,
+          "economic_cycle": 0.08607076592488277
+        },
+        {
+          "date": "2020-01-03 00:00:00",
+          "steel_rebar_price": 672.0541538731915,
+          "price_change": 0.03783914367433164,
+          "price_ma_7": NaN,
+          "price_ma_30": NaN,
+          "volatility": NaN,
+          "trend": 0.13143483023001096,
+          "seasonal": 2.319922962166997,
+          "economic_cycle": 0.172139937773768
+        },
+        {
+          "date": "2020-01-04 00:00:00",
+          "steel_rebar_price": 699.2369931116805,
+          "price_change": 0.04044739413011363,
+          "price_ma_7": NaN,
+          "price_ma_30": NaN,
+          "volatility": NaN,
+          "trend": 0.19715224534501644,
+          "seasonal": 3.090739252594491,
+          "economic_cycle": 0.2582059215001812
+        },
+        {
+          "date": "2020-01-05 00:00:00",
+          "steel_rebar_price": 647.4419587445119,
+          "price_change": -0.07407364724322586,
+          "price_ma_7": NaN,
+          "price_ma_30": NaN,
+          "volatility": NaN,
+          "trend": 0.2628696604600219,
+          "seasonal": 3.859423202635316,
+          "economic_cycle": 0.3442671231166937
+        }
+      ]
+    }
+  }
+}
