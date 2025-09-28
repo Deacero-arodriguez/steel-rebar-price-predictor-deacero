@@ -1,0 +1,38 @@
+{
+  "model_type": "Enhanced Random Forest Regressor (Fixed)",
+  "training_date": "2025-09-28T14:20:35.821377",
+  "features_count": 78,
+  "training_samples": 1827,
+  "data_sources": [
+    "Yahoo Finance",
+    "Alpha Vantage",
+    "FRED API",
+    "IndexMundi",
+    "Daily Metal Price",
+    "Barchart",
+    "FocusEconomics",
+    "S&P Global Platts",
+    "Reportacero",
+    "Banco de M\u00e9xico",
+    "INEGI",
+    "Trading Economics",
+    "World Bank",
+    "Quandl",
+    "USGS",
+    "Banxico",
+    "INEGI"
+  ],
+  "metrics": {
+    "train_mape": 0.11210440808084972,
+    "test_mape": 0.2492439395239378,
+    "train_r2": 0.9995996864435321,
+    "test_r2": 0.9984233018682325,
+    "cv_mape": 0.2999928280697035,
+    "cv_std": 0.06041823727902863,
+    "model_confidence": 100,
+    "features_count": 78,
+    "training_samples": 1827
+  },
+  "model_filename": "data/models/enhanced_steel_rebar_model_fixed_20250928_142035.pkl",
+  "feature_importance_filename": "data/models/enhanced_feature_importance_fixed_20250928_142035.csv"
+}
