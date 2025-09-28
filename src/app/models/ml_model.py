@@ -118,12 +118,17 @@ class SteelRebarPredictor:
         # Scale features
         X_scaled = self.scaler.fit_transform(X)
         
-        # Train model (using Random Forest for better performance)
+        # Train model (using optimized Random Forest for production)
         self.model = RandomForestRegressor(
-            n_estimators=100,
-            max_depth=10,
+            n_estimators=150,      # Balanced profile: 150 trees
+            max_depth=12,          # Balanced profile: depth 12
+            min_samples_split=3,    # More flexible
+            min_samples_leaf=1,     # More flexible
+            max_features='sqrt',    # Optimized feature selection
             random_state=42,
-            n_jobs=-1
+            n_jobs=-1,
+            bootstrap=True,
+            oob_score=True
         )
         
         self.model.fit(X_scaled, y)

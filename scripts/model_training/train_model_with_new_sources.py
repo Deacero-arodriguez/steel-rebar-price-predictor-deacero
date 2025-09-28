@@ -314,12 +314,12 @@ def train_comprehensive_model(data):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
-    # Entrenar modelo Random Forest mejorado
-    print("🌲 Entrenando Random Forest...")
+    # Entrenar modelo Random Forest optimizado (perfil balanced)
+    print("🌲 Entrenando Random Forest (Perfil Balanced)...")
     
     model = RandomForestRegressor(
-        n_estimators=200,      # Más árboles para mejor rendimiento
-        max_depth=15,          # Mayor profundidad para patrones complejos
+        n_estimators=150,      # Balanced: 150 árboles (optimizado para producción)
+        max_depth=12,          # Balanced: profundidad 12 (balance velocidad/precisión)
         min_samples_split=3,   # Más flexible
         min_samples_leaf=1,    # Más flexible
         max_features='sqrt',   # Optimización de features
