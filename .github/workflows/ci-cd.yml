@@ -247,7 +247,7 @@ jobs:
         curl -f ${{ steps.get-url.outputs.SERVICE_URL }}/health
     
     - name: Comment deployment status
-      if: env.HAS_GCP_SECRET == 'true'
+      if: env.HAS_GCP_SECRET == 'true' && github.event_name == 'pull_request'
       uses: actions/github-script@v7
       with:
         script: |
@@ -278,6 +278,7 @@ jobs:
     
     steps:
     - name: Comment deployment failure info
+      if: github.event_name == 'pull_request'
       uses: actions/github-script@v7
       with:
         script: |
