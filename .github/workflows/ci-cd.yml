@@ -255,7 +255,7 @@ jobs:
             \`\`\``
           })
 
-  deploy-info:
+  deploy-failure-info:
     needs: deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && failure()
