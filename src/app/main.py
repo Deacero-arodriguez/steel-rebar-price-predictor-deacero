@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import logging
 import asyncio
 from typing import Optional
+from contextlib import asynccontextmanager
 
 from src.app.config import settings
 from src.app.models.schemas import (
@@ -23,13 +24,54 @@ from src.app.models.ml_model import SteelRebarPredictor
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Initialize services
+data_collector = DataCollector()
+cache_service = CacheService(settings.redis_url)
+ml_model = SteelRebarPredictor()
+
+# Global variables
+last_model_update = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Manage application lifespan events."""
+    # Startup
+    logger.info("Starting Steel Rebar Price Predictor API...")
+    
+    # Try to load existing model
+    try:
+        ml_model.load_model("model.joblib")
+        global last_model_update
+        last_model_update = ml_model.last_training_date
+        logger.info("Loaded existing model")
+    except FileNotFoundError:
+        logger.info("No existing model found, will train on first request")
+    except Exception as e:
+        logger.warning(f"Failed to load existing model: {e}")
+    
+    yield
+    
+    # Shutdown
+    logger.info("Shutting down Steel Rebar Price Predictor API...")
+    
+    # Save model if trained
+    if hasattr(ml_model, 'model') and ml_model.model is not None:
+        try:
+            ml_model.save_model("model.joblib")
+            logger.info("Model saved on shutdown")
+        except Exception as e:
+            logger.warning(f"Failed to save model on shutdown: {e}")
+
+
 # Initialize FastAPI app
 app = FastAPI(
     title="Steel Rebar Price Predictor",
     description="API for predicting steel rebar prices using machine learning",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # Add CORS middleware
@@ -41,13 +83,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize services
-data_collector = DataCollector()
-cache_service = CacheService(settings.redis_url)
-ml_model = SteelRebarPredictor()
-
-# Global variables
-last_model_update = None
+# Services and lifespan function already defined above
 model_training_in_progress = False
 
 
@@ -278,35 +314,7 @@ async def get_stats(api_key: str = Depends(verify_api_key)):
         raise HTTPException(status_code=500, detail=f"Stats failed: {str(e)}")
 
 
-@app.on_event("startup")
-async def startup_event():
-    """Initialize the application on startup."""
-    logger.info("Starting Steel Rebar Price Predictor API...")
-    
-    # Try to load existing model
-    try:
-        ml_model.load_model("model.joblib")
-        global last_model_update
-        last_model_update = ml_model.last_training_date
-        logger.info("Loaded existing model")
-    except FileNotFoundError:
-        logger.info("No existing model found, will train on first request")
-    except Exception as e:
-        logger.warning(f"Failed to load existing model: {e}")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Cleanup on shutdown."""
-    logger.info("Shutting down Steel Rebar Price Predictor API...")
-    
-    # Save model if trained
-    if hasattr(ml_model, 'model') and ml_model.model is not None:
-        try:
-            ml_model.save_model("model.joblib")
-            logger.info("Model saved successfully")
-        except Exception as e:
-            logger.error(f"Failed to save model: {e}")
+# Event handlers moved to lifespan function above
 
 
 if __name__ == "__main__":

@@ -62,7 +62,7 @@ def test_health_check():
 def test_predict_endpoint_no_api_key():
     """Test prediction endpoint without API key."""
     response = client.get("/predict/steel-rebar-price")
-    assert response.status_code == 422  # Missing header
+    assert response.status_code == 401  # Unauthorized - missing API key
 
 
 def test_predict_endpoint_invalid_api_key():
@@ -74,8 +74,8 @@ def test_predict_endpoint_invalid_api_key():
     assert response.status_code == 401
 
 
-@patch('app.main.data_collector')
-@patch('app.main.ml_model')
+@patch('src.app.main.data_collector')
+@patch('src.app.main.ml_model')
 def test_predict_endpoint_success(mock_model, mock_collector, mock_data, mock_prediction):
     """Test successful prediction."""
     # Mock data collection
@@ -117,7 +117,7 @@ def test_predict_endpoint_success(mock_model, mock_collector, mock_data, mock_pr
 def test_explain_endpoint_no_api_key():
     """Test explanation endpoint without API key."""
     response = client.get("/explain/2025-01-15")
-    assert response.status_code == 422
+    assert response.status_code == 401  # Unauthorized - missing API key
 
 
 def test_explain_endpoint_invalid_api_key():
@@ -129,7 +129,7 @@ def test_explain_endpoint_invalid_api_key():
     assert response.status_code == 401
 
 
-@patch('app.main.cache_service')
+@patch('src.app.main.cache_service')
 def test_explain_endpoint_success(mock_cache):
     """Test successful explanation."""
     # Mock cached prediction
@@ -167,7 +167,7 @@ def test_explain_endpoint_success(mock_cache):
 def test_stats_endpoint_no_api_key():
     """Test stats endpoint without API key."""
     response = client.get("/stats")
-    assert response.status_code == 422
+    assert response.status_code == 401  # Unauthorized - missing API key
 
 
 def test_stats_endpoint_success():

@@ -4,8 +4,9 @@ import os
 from typing import List
 try:
     from pydantic_settings import BaseSettings
+    from pydantic import ConfigDict
 except ImportError:
-    from pydantic import BaseSettings
+    from pydantic import BaseSettings, ConfigDict
 
 
 class Settings(BaseSettings):
@@ -37,8 +38,7 @@ class Settings(BaseSettings):
         "Trading Economics"
     ]
     
-    class Config:
-        env_file = ".env"
+    model_config = ConfigDict(env_file=".env")
 
 
 settings = Settings()
