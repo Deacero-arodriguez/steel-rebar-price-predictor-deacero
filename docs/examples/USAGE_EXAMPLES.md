@@ -50,11 +50,10 @@ curl -X GET "https://steel-rebar-predictor-646072255295.us-central1.run.app/"
   "version": "2.1.0",
   "documentation_url": "https://github.com/Deacero-arodriguez/steel-rebar-price-predictor-deacero",
   "data_sources": [
-    "World Bank",
-    "Alpha Vantage", 
     "Yahoo Finance",
-    "FRED API",
-    "Simulated Steel-Specific Data"
+    "Alpha Vantage",
+    "FRED (Federal Reserve Economic Data)",
+    "Trading Economics"
   ],
   "last_model_update": "2025-09-28T21:41:10.655871Z"
 }
@@ -526,6 +525,6 @@ else:
 
 ---
 
-**Última actualización**: 28 de septiembre de 2024  
+**Última actualización**: 29 de septiembre de 2025  
 **Versión de la API**: 2.1.0  
 **Estado**: ✅ Producción

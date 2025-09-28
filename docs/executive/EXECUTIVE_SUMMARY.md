@@ -38,6 +38,7 @@ Desarrollar un sistema de predicción de precios de varilla de acero que permita
 
 ### **API REST Desplegada**
 - **URL de producción**: https://steel-rebar-predictor-646072255295.us-central1.run.app
+- **Google Cloud Console**: https://console.cloud.google.com/welcome?project=steel-rebar-predictor-deacero
 - **Disponibilidad**: 24/7
 - **Tiempo de respuesta promedio**: 1.2 segundos
 - **Rate limiting**: 100 requests/hora por API key

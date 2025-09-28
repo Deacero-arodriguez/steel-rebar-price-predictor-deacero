@@ -44,11 +44,10 @@ X-API-Key: your-api-key-here
   "version": "2.1.0",
   "documentation_url": "https://github.com/Deacero-arodriguez/steel-rebar-price-predictor-deacero",
   "data_sources": [
-    "Alpha Vantage (Steel Stocks & Commodity ETFs)",
-    "FRED API (Federal Reserve Economic Data)",
-    "World Bank",
     "Yahoo Finance",
-    "Simulated Steel-Specific Data"
+    "Alpha Vantage",
+    "FRED (Federal Reserve Economic Data)",
+    "Trading Economics"
   ],
   "last_model_update": "2025-09-29T21:41:10.655871Z",
   "model_performance": {
@@ -83,10 +82,10 @@ X-API-Key: your-api-key-here
   "model_confidence": 0.85,
   "timestamp": "2025-01-28T23:59:59Z",
   "prediction_details": {
-    "model_version": "comprehensive_v2",
-    "features_used": 173,
-    "data_sources": 23,
-    "last_training_date": "2024-09-28T14:20:35Z"
+    "model_version": "enhanced_v2",
+    "features_used": 37,
+    "data_sources": 4,
+    "last_training_date": "2025-09-28T16:04:05Z"
   },
   "confidence_breakdown": {
     "prediction_interval": 0.90,
@@ -283,5 +282,5 @@ apiRequest('/predict/steel-rebar-price')
 ---
 
 **Última actualización**: 29 de septiembre de 2025  
-**Versión de la API**: 1.0  
+**Versión de la API**: 2.1.0  
 **Estado**: ✅ Producción
