@@ -15,6 +15,7 @@ import joblib
 import json
 from datetime import datetime
 import logging
+from typing import Dict
 
 # Add the project root to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
