@@ -4,6 +4,7 @@ Script para verificar que el API cumple exactamente con el formato requerido por
 """
 
 import json
+import os
 from datetime import datetime, timedelta
 
 def verify_prediction_response_format():
@@ -296,7 +297,9 @@ def generate_compliance_report():
     }
     
     # Guardar reporte
-    with open('../../data/predictions/api_compliance_report.json', 'w') as f:
+    output_path = os.path.join(os.path.dirname(__file__), "..", "..", "data", "predictions", "api_compliance_report.json")
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w') as f:
         json.dump(compliance_report, f, indent=2)
     
     print(f"\n💾 Reporte guardado en: api_compliance_report.json")
