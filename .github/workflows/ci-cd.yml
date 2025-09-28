@@ -200,9 +200,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Check GCP credentials
+    - name: Check GCP credentials and set environment variable
       run: |
         if [ -z "${{ secrets.GCP_SA_KEY }}" ]; then
+          echo "HAS_GCP_SECRET=false" >> $GITHUB_ENV
           echo "❌ GCP_SA_KEY secret not configured"
           echo "📋 Para habilitar deploy automático:"
           echo "1. Ve a GitHub Settings → Secrets and variables → Actions"
@@ -213,39 +214,40 @@ jobs:
           echo "bash deployment/cloud/deploy.sh"
           echo ""
           echo "✅ Pipeline completado - deploy manual disponible"
-          exit 0
+        else
+          echo "HAS_GCP_SECRET=true" >> $GITHUB_ENV
+          echo "✅ GCP credentials found"
         fi
-        echo "✅ GCP credentials found"
     
     - name: Authenticate to Google Cloud
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
     
     - name: Set up Cloud SDK
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       uses: google-github-actions/setup-gcloud@v2
     
     - name: Deploy to Cloud Run
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       run: |
         gcloud builds submit --config deployment/cloud/cloudbuild.yaml .
     
     - name: Get service URL
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       id: get-url
       run: |
         SERVICE_URL=$(gcloud run services describe steel-rebar-predictor --region=us-central1 --format="value(status.url)")
         echo "SERVICE_URL=$SERVICE_URL" >> $GITHUB_OUTPUT
     
     - name: Test deployed service
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       run: |
         curl -f ${{ steps.get-url.outputs.SERVICE_URL }}/health
     
     - name: Comment deployment status
-      if: secrets.GCP_SA_KEY != ''
+      if: env.HAS_GCP_SECRET == 'true'
       uses: actions/github-script@v7
       with:
         script: |
