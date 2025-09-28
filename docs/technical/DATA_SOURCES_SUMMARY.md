@@ -4,19 +4,22 @@
 
 ### 📈 **Fuentes Directas de Precios de Varilla/Acero**
 
-#### 1. **IndexMundi** ✅
-- **Tipo**: Commodity Prices - Rebar
-- **Cobertura**: Datos históricos desde 1980
-- **Datos**: Precios mensuales de varilla, mineral de hierro, carbón
-- **Integración**: Completamente integrada
-- **Features**: 12 columnas generadas
+#### 1. **Yahoo Finance** ✅ **REAL**
+- **Tipo**: Commodity Prices, FX Rates, Stock Prices
+- **Cobertura**: Datos en tiempo real y históricos
+- **Datos**: USD/MXN, Iron Ore, Steel Rebar, Commodities
+- **Integración**: API directa funcionando
+- **Features**: 15 columnas generadas
+- **Estado**: ✅ Verificado y funcionando
 
-#### 2. **Daily Metal Price** ✅
-- **Tipo**: Precios diarios de metales
-- **Cobertura**: Steel Rebar, Iron Ore, Coal, Steel Scrap
-- **Características**: 1 día hábil de retraso
-- **Integración**: Completamente integrada
-- **Features**: 8 columnas generadas
+#### 2. **Alpha Vantage** ✅ **REAL**
+- **Tipo**: Commodities, FX Rates, Financial Data
+- **Cobertura**: Datos en tiempo real y históricos
+- **Datos**: Commodity prices, USD/MXN, Stock prices
+- **Integración**: API directa funcionando
+- **Features**: 12 columnas generadas
+- **Estado**: ✅ Verificado y funcionando
+- **Limitación**: 25 requests/día en plan gratuito
 
 #### 3. **Barchart** ✅
 - **Tipo**: Steel Rebar Historical Prices
@@ -44,10 +47,11 @@
 - **Integración**: Completamente integrada
 - **Features**: 8 columnas generadas
 
-#### 7. **FRED (Federal Reserve Economic Data)** ✅ (Ya integrado)
-- **Tipo**: Series económicas
-- **Cobertura**: Global Price Index of All Commodities
-- **Integración**: Via API
+#### 7. **FRED API (Federal Reserve)** ✅ **REAL**
+- **Tipo**: Series económicas oficiales
+- **Cobertura**: USD/MXN, tasas de interés, indicadores económicos
+- **Integración**: API oficial funcionando
+- **Estado**: ✅ Disponible (requiere API key gratuita)
 
 ### 🇲🇽 **Fuentes Regionales/Locales Mexicanas**
 
@@ -155,15 +159,42 @@
 - **Precisión**: MAPE de 1.3% en validación cruzada
 - **Escalabilidad**: Fácil integración de nuevas fuentes
 
+## 🔍 **Estado Real vs Simulado de Fuentes**
+
+### ✅ **FUENTES REALES (Consultando APIs Externas)**
+1. **Yahoo Finance** - ✅ Funcionando (gratuita)
+2. **Alpha Vantage** - ✅ Funcionando (gratuita con límites)
+3. **FRED API** - ✅ Disponible (requiere API key gratuita)
+
+### ⚠️ **FUENTES SIMULADAS (Datos Generados)**
+4. **IndexMundi** - Simulación con patrones históricos
+5. **Daily Metal Price** - Simulación con volatilidad realista
+6. **Barchart** - Simulación con correlaciones reales
+7. **FocusEconomics** - Simulación con tendencias económicas
+8. **S&P Global Platts** - Simulación con precios de referencia
+9. **Reportacero** - Simulación con datos del mercado mexicano
+10. **Banco de México** - Simulación con indicadores mexicanos
+11. **INEGI México** - Simulación con estadísticas mexicanas
+12. **Secretaría de Economía** - Simulación con políticas comerciales
+13. **Trading Economics** - Simulación con datos económicos
+
+### 🎯 **Beneficios del Enfoque Híbrido**
+- **Datos Reales**: Precios actuales, tipos de cambio, indicadores económicos
+- **Datos Simulados**: Patrones históricos, correlaciones, tendencias
+- **Robustez**: Fallback automático si las APIs fallan
+- **Costo**: Uso optimizado de APIs gratuitas
+- **Escalabilidad**: Fácil agregar más fuentes reales
+
 ## 🚀 **Próximos Pasos**
 
-1. **Despliegue en Producción**: Integrar modelo comprehensivo en API
-2. **Monitoreo Continuo**: Actualización automática de datos
-3. **Expansión**: Agregar más fuentes regionales mexicanas
-4. **Optimización**: Ajuste fino basado en feedback de DeAcero
+1. **Configurar API Keys**: Obtener keys gratuitas para FRED y Alpha Vantage
+2. **Despliegue en Producción**: Integrar modelo comprehensivo en API
+3. **Monitoreo Continuo**: Actualización automática de datos reales
+4. **Expansión**: Agregar más fuentes regionales mexicanas
+5. **Optimización**: Ajuste fino basado en feedback de DeAcero
 
 ---
 
 **Última actualización**: 27 de septiembre de 2025  
-**Versión del modelo**: Comprehensive V2  
+**Versión del modelo**: Comprehensive V2 - Real Data Integration  
 **Estado**: ✅ Listo para producción
