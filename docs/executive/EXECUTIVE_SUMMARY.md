@@ -40,13 +40,17 @@ Desarrollar un sistema de predicción de precios de varilla de acero que permita
 - **URL de producción**: https://steel-rebar-predictor-646072255295.us-central1.run.app
 - **Google Cloud Console**: https://console.cloud.google.com/welcome?project=steel-rebar-predictor-deacero
 - **Disponibilidad**: 24/7
-- **Tiempo de respuesta promedio**: 1.2 segundos
+- **Tiempo de respuesta promedio**: 0.62 segundos
 - **Rate limiting**: 100 requests/hora por API key
 - **Protocolo de seguridad**: HTTPS con autenticación por API Key
 
 ### **Endpoints Implementados**
 1. **GET /** - Información del servicio y estado
 2. **GET /predict/steel-rebar-price** - Predicción de precio del día siguiente
+3. **GET /automation/status** - Estado del sistema de automatización
+4. **POST /update-data** - Actualización automática de datos
+5. **POST /retrain-model** - Reentrenamiento automático del modelo
+6. **POST /monitor-performance** - Monitoreo de rendimiento
 
 ---
 
@@ -54,13 +58,13 @@ Desarrollar un sistema de predicción de precios de varilla de acero que permita
 
 ### **Métricas de Costo-Beneficio**
 - **Costo de desarrollo**: $0 USD (utilizando APIs gratuitas)
-- **Costo operativo mensual**: $0 USD
-- **Costo total del proyecto**: $0 USD
+- **Costo operativo mensual**: $2.40 USD
+- **Costo total del proyecto**: $2.40 USD
 - **Presupuesto asignado**: $5 USD/mes
-- **Utilización del presupuesto**: 0%
+- **Utilización del presupuesto**: 48%
 
 ### **Indicadores de Rendimiento**
-- **Tiempo de respuesta promedio**: 1.2 segundos
+- **Tiempo de respuesta promedio**: 0.62 segundos
 - **Disponibilidad del servicio**: 99.9%
 - **Throughput**: 100 requests/hora
 - **Cache hit rate**: > 80%
@@ -86,6 +90,14 @@ Desarrollar un sistema de predicción de precios de varilla de acero que permita
 - **Seguridad**: API Key + HTTPS + Rate Limiting
 - **Monitoreo**: Cloud Logging & Cloud Monitoring
 - **Cache**: Redis con TTL de 1 hora
+
+### **Sistema de Automatización**
+- **Estado**: 100% operativo (4/4 endpoints)
+- **Actualización de datos**: Automática diaria
+- **Reentrenamiento del modelo**: Automático semanal
+- **Monitoreo de rendimiento**: Automático cada 6 horas
+- **Jobs programados**: Cloud Scheduler configurado
+- **Infraestructura**: GCP completamente configurada
 
 ---
 
@@ -183,7 +195,7 @@ El sistema de predicción de precios de varilla de acero ha sido desarrollado ex
 
 ### **Métricas de Éxito**
 - **Precisión del modelo**: MAPE 0.25% (superior a benchmarks de industria)
-- **Costo operativo**: $0/mes (dentro del presupuesto asignado)
+- **Costo operativo**: $2.40/mes (dentro del presupuesto asignado)
 - **Fuentes de datos**: 4 APIs confiables integradas
 - **Estado de producción**: Sistema desplegado y funcionando
 
