@@ -373,7 +373,7 @@ async def monitor_performance(api_key: str = Depends(verify_api_key)):
     try:
         logger.info("📊 Iniciando monitoreo automático de rendimiento...")
         
-        # Simular métricas de rendimiento
+        # Simular métricas de rendimiento simplificadas
         performance_metrics = {
             "api_performance": {
                 "avg_response_time_ms": 1200,
@@ -384,7 +384,6 @@ async def monitor_performance(api_key: str = Depends(verify_api_key)):
             },
             "model_performance": {
                 "current_mape": 0.25,
-                "mape_trend": "stable",
                 "confidence_score": 0.847,
                 "prediction_accuracy": 99.75
             },
