@@ -423,7 +423,7 @@ async def monitor_performance(api_key: str = Depends(verify_api_key)):
         if performance_metrics["resource_usage"]["memory_usage_percent"] > 80:
             recommendations.append("Considerar aumentar memoria asignada")
         
-        if performance_metrics["model_performance"]["mape"] > 0.05:
+        if performance_metrics["model_performance"]["accuracy_mape"] > 0.05:
             recommendations.append("Considerar reentrenamiento del modelo")
         
         result = {
